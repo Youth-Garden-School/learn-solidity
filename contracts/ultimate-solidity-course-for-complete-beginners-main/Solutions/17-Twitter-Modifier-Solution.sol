@@ -25,11 +25,14 @@ contract Twitter {
         owner = msg.sender;
     }
 
+    // tạo 1 validate cho owner sẽ dùng ở các hàm chỉ dành cho owner
     modifier onlyOwner() {
         require(msg.sender == owner, "YOU ARE NOT THE OWNER!");
         _;
     }
 
+
+    // sử dụng onlyOwner để validate địa chỉ của người gửi lên
     function changeTweetLength(uint16 newTweetLength) public onlyOwner {
         MAX_TWEET_LENGTH = newTweetLength;
     }
