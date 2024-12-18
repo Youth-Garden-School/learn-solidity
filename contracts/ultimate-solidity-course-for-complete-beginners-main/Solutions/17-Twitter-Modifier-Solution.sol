@@ -10,6 +10,8 @@ pragma solidity ^0.8.0;
 
 contract Twitter {
 
+
+    // đổi MAX_TWEET_LENGTH từ constant -> public để có thể thay đổi được
     uint16 public MAX_TWEET_LENGTH = 280;
 
     struct Tweet {
@@ -21,6 +23,7 @@ contract Twitter {
     mapping(address => Tweet[] ) public tweets;
     address public owner;
 
+    // constructor chỉ chạy 1 lần vào lần đầu deploy
     constructor() {
         owner = msg.sender;
     }

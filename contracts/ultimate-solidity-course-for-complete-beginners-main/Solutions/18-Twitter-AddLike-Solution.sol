@@ -42,6 +42,7 @@ contract Twitter {
         require(bytes(_tweet).length <= MAX_TWEET_LENGTH, "Tweet is too long bro!" );
 
         Tweet memory newTweet = Tweet({
+            // đánh id cho từng tweet
             id: tweets[msg.sender].length,
             author: msg.sender,
             content: _tweet,
