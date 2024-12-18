@@ -42,7 +42,7 @@ contract Twitter {
         require(bytes(_tweet).length <= MAX_TWEET_LENGTH, "Tweet is too long bro!" );
 
         Tweet memory newTweet = Tweet({
-            // đánh id cho từng tweet
+            // đánh id cho từng tweet, để
             id: tweets[msg.sender].length,
             author: msg.sender,
             content: _tweet,
@@ -53,16 +53,20 @@ contract Twitter {
         tweets[msg.sender].push(newTweet);
     }
 
+    // đánh dấu external là chỉ có bên ngoài mới gọi được, bên trong ko gọi được
     function likeTweet(address author, uint256 id) external {  
         require(tweets[author][id].id == id, "TWEET DOES NOT EXIST");
 
+        // lấy đúng tweet dựa vào id, id đánh tăng tuần tự dựa vào số lượng các tweet đã có
         tweets[author][id].likes++;
     }
 
+    // đánh dấu external là chỉ có bên ngoài mới gọi được, bên trong ko gọi được
     function unlikeTweet(address author, uint256 id) external {
         require(tweets[author][id].id == id, "TWEET DOES NOT EXIST");
         require(tweets[author][id].likes > 0, "TWEET HAS NO LIKES");
         
+        // lấy đúng tweet dựa vào id, id đánh tăng tuần tự dựa vào số lượng các tweet đã có
         tweets[author][id].likes--;
     }
 
